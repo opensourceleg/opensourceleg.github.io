@@ -322,9 +322,6 @@ export default function LendingProgram() {
               <Button href="https://neurobionics.github.io/opensourceleg/" target="_blank" rel="noopener noreferrer" variant="outline" className="text-black border-black hover:bg-[var(--light-green)]">
                 Documentation <ArrowUpRight className="w-4 h-4 ml-2" />
               </Button>
-              <Button href="https://opensourceleg.discourse.group/" target="_blank" rel="noopener noreferrer" variant="outline" className="text-black border-black hover:bg-[var(--light-green)]">
-                Forum <ArrowUpRight className="w-4 h-4 ml-2" />
-              </Button>
             </div>
           </div>
 
