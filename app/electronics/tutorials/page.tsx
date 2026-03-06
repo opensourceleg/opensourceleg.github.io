@@ -1,4 +1,4 @@
-﻿import { PageHero } from "@/components/page-hero";
+import { PageHero } from "@/components/page-hero";
 import { Button } from "@/components/ui/button";
 import { Clock, ListChecks, MessageSquare, ArrowUpRight, Sparkles } from "lucide-react";
 
@@ -14,8 +14,8 @@ export default function ElectronicsTutorials() {
         }
         description="Guided setup, wiring, and validation steps for the Open-Source Leg electronics. The first tutorials land soon."
         secondaryButton={{
-          href: "/electronics/documentation",
-          text: "View documentation",
+          href: "/electronics#modules",
+          text: "Browse boards",
           icon: <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />,
           target: undefined
         }}

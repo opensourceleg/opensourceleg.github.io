@@ -1,288 +1,242 @@
-﻿import { PageHero } from "@/components/page-hero";
-import { Button } from "@/components/ui/button";
-import { ArrowDown, Activity, Gauge, ShieldCheck, Plug, Clock, ArrowUpRight, Sparkles, Cable } from "lucide-react";
+import { PageHero } from "@/components/page-hero"
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import type { ReactNode } from "react"
+import { ArrowDown, ArrowUpRight } from "lucide-react"
+
+const datasheetHref = "/downloads/OSL-DAQ.pdf"
+const stepZipHref = "/downloads/OSL-DAQ-supplement.zip"
 
 export default function ElectronicsDAQ() {
   return (
     <div className="min-h-screen pt-12">
-      <PageHero 
+      <PageHero
         title={
           <>
-            Electronics{" "}
-            <span className="font-bold italic">DAQ</span>
+            <span className="font-bold italic">Data Acquisition Board</span>
           </>
         }
-        description="Capture synchronized sensor data with a board designed for the Open-Source Leg platform."
+        description="Technical overview, architecture, and connector references for the Open-Source Leg Data Acquisition board."
         primaryButton={{
-          href: "#features",
-        text: "See key features",
-        icon: <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5" />
-      }}
-      secondaryButton={{
-        href: "/electronics/documentation",
-        text: "Back to documentation",
-        icon: <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
-      }}
-    />
+          href: "#daq-overview",
+          text: "View overview",
+          icon: <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5" />,
+        }}
+        middleButton={{
+          href: "https://available-inventions.umich.edu/product/osl-electronics",
+          text: "Purchase at UM",
+          icon: <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />,
+          target: "_blank",
+        }}
+        secondaryButton={{
+          href: "/electronics#modules",
+          text: "Back to electronics",
+          icon: <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />,
+        }}
+      />
 
-      {/* Feature Highlights */}
-      <section id="features" className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-light text-gray-900">
-              Focused on{" "}
-              <span className="font-medium italic">clean data</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              From connectors to sampling, the DAQ is tuned for prosthetic research workflows.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-[var(--black)] text-white rounded-2xl p-6 shadow-2xl border border-black space-y-3">
-              <div className="flex items-center gap-3">
-                <Activity className="w-5 h-5" />
-                <p className="text-lg font-semibold">Synchronized capture</p>
-              </div>
-              <p className="text-white/70 text-sm leading-relaxed">
-                High-rate acquisition for torque, angle, and inertial signals with shared timing so your datasets stay aligned.
+      <section id="daq-overview" className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 border-b border-black/10 pb-8">
+            <div className="space-y-3 max-w-4xl">
+              <h2 className="text-2xl sm:text-3xl font-light text-gray-900">
+                DAQ <span className="font-medium italic">overview</span>
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base">
+                The Data Acquisition Board enables high quality analog signal measurements for using the 6-channel load cell or other relevant analog signals. This is a separate circuit board that can be used with the RPi or other embedded systems via SPI communication.
+                The Data Acquisition System (DAQ) integrates a 24-bit, 6-channel delta-sigma ADC (Texas Instruments ADS131M06)
+                with external signal amplification and an anti-aliasing filter. A charge pump generates bipolar supply voltages
+                from a single input to power bridge-based sensors. The DAQ is optimized for load cell measurements (SRI M3564F)
+                for the Open-Source Leg and can also be used for high-resolution voltage measurements with bridge-based sensors.
               </p>
             </div>
-
-            <div className="bg-white rounded-2xl p-6 shadow-xl border border-black space-y-3">
-              <div className="flex items-center gap-3">
-                <Gauge className="w-5 h-5 text-[var(--light-blue)]" />
-                <p className="text-lg font-semibold text-gray-900">Wide sensor support</p>
-              </div>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Condition and read joint encoders, load cells, IMUs, and foot sensors without custom breakout hardware.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-6 shadow-xl border border-black space-y-3">
-              <div className="flex items-center gap-3">
-                <ShieldCheck className="w-5 h-5 text-[var(--light-green)]" />
-                <p className="text-lg font-semibold text-gray-900">Lab or field ready</p>
-              </div>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Locking connectors, strain relief, and clear labeling reduce wiring faults when you take the leg outside the lab.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Connectivity */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto space-y-8">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 text-sm uppercase tracking-wide text-gray-600">
-                <Cable className="w-4 h-4" />
-                <span className="font-semibold">Connections</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900">What you&apos;ll hook up</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Each connector is mapped to the sensing and actuation needs of the Open-Source Leg, keeping cabling predictable.
-              </p>
-              <ul className="space-y-3 text-sm text-gray-700">
-                <li className="flex items-start gap-2">
-                  <Plug className="w-4 h-4 mt-0.5" />
-                  <span>Encoder and potentiometer inputs for knee and ankle joints</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Gauge className="w-4 h-4 mt-0.5" />
-                  <span>Load cell channels for torque and force sensing</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Activity className="w-4 h-4 mt-0.5" />
-                  <span>IMU headers for orientation and acceleration data</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Sparkles className="w-4 h-4 mt-0.5" />
-                  <span>Auxiliary inputs for future sensors and experiments</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white border border-black rounded-2xl shadow-2xl p-6 space-y-5">
-              <h4 className="text-xl font-semibold text-gray-900">Plays well with</h4>
-              <div className="grid sm:grid-cols-2 gap-3">
-                <div className="border border-black rounded-xl p-4 bg-[var(--light-green)]/30">
-                  <p className="text-sm font-semibold text-gray-900">Hardware</p>
-                  <p className="text-sm text-gray-700 mt-1">Mechanical stack pre-wired for the DAQ pinout.</p>
-                  <Button
-                    href="/hardware"
-                    variant="outline"
-                    className="mt-3 text-black border-black hover:bg-[var(--light-blue)] hover:text-black w-full"
-                  >
-                    See hardware
-                  </Button>
-                </div>
-                <div className="border border-black rounded-xl p-4 bg-[var(--light-blue)]/30">
-                  <p className="text-sm font-semibold text-gray-900">Software</p>
-                  <p className="text-sm text-gray-700 mt-1">Python SDK hooks for streaming, logging, and visualization.</p>
-                  <Button
-                    href="/software"
-                    variant="outline"
-                    className="mt-3 text-black border-black hover:bg-[var(--light-green)] hover:text-black w-full"
-                  >
-                    See software
-                  </Button>
-                </div>
-              </div>
-              <p className="text-sm text-gray-600">
-                Start with the DAQ today; driver and logging examples will roll out alongside tutorials.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Purchase Option */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto bg-[var(--black)] text-white border-2 border-black rounded-3xl p-10 sm:p-12 shadow-2xl">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-            <div className="space-y-4">
-              <h3 className="text-2xl sm:text-3xl text-white">
-                <span className="relative font-medium italic">
-                  Purchase
-                  <svg
-                    className="absolute -bottom-1 left-0 w-full h-2 sm:h-3"
-                    viewBox="0 0 200 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M2 10C60 6 140 6 198 8"
-                      stroke="var(--light-blue)"
-                      strokeWidth="6"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </span>{" "}
-                Option
-              </h3>
-              <p className="text-white/90 leading-relaxed max-w-3xl">
-                Ready to purchase a DAQ? Orders are handled through the University of Michigan marketplace. Purchases are
-                treated as donations to the Open-Source Leg project, helping fund new hardware, software, and community
-                support.
-              </p>
-            </div>
-            <Button
-              href="https://available-inventions.umich.edu/product/osl-electronics"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[var(--light-blue)] text-black border hover:bg-[var(--light-green)] hover:text-black px-6 py-4 text-base sm:text-lg flex items-center justify-center gap-2"
-            >
-              Purchase DAQ
-              <ArrowUpRight className="w-4 h-4" />
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Downloads & Support */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto space-y-8">
-          <div className="text-center space-y-3">
-            <h3 className="text-3xl sm:text-4xl font-light text-gray-900">
-              Downloads{" "}
-              <span className="font-medium italic">& support</span>
-            </h3>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Firmware, wiring diagrams, and example notebooks are on the way.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white border border-black rounded-2xl p-6 shadow-xl flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-sm uppercase tracking-wide text-gray-600">
-                  <ArrowDown className="w-4 h-4" />
-                  <span className="font-semibold">DAQ Specification</span>
-                </div>
-                <h4 className="text-xl font-semibold text-gray-900">Complete DAQ PDF</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Full specification, pinout diagrams, and electrical schematics for the Open-Source Leg DAQ board.
-                </p>
-              </div>
+            <div className="flex flex-col gap-3">
               <Button
-                href="/downloads/OSL-DAQ.pdf"
-                download="OSL-DAQ.pdf"
-                className="mt-4 bg-[var(--light-blue)] text-black border border-black hover:bg-[var(--light-green)] w-full"
-              >
-                Download PDF
-                <ArrowDown className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-
-            <div className="bg-white border border-black rounded-2xl p-6 shadow-xl flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-sm uppercase tracking-wide text-gray-600">
-                  <ArrowDown className="w-4 h-4" />
-                  <span className="font-semibold">DAQ Supplement</span>
-                </div>
-                <h4 className="text-xl font-semibold text-gray-900">Supplementary Docs</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Additional reference materials, calibration curves, and assembly notes for the DAQ board.
-                </p>
-              </div>
-              <Button
-                href="/downloads/OSL-DAQ-supplement.zip"
-                download="OSL-DAQ-supplement.zip"
-                className="mt-4 bg-[var(--light-green)] text-black border border-black hover:bg-[var(--light-blue)] w-full"
-              >
-                Download Supplement (ZIP)
-                <ArrowDown className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-
-            <div className="bg-white border border-black rounded-2xl p-6 shadow-xl flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <ShieldCheck className="w-5 h-5 text-[var(--light-green)]" />
-                  <h4 className="text-xl font-semibold text-gray-900">Community support</h4>
-                </div>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Ask wiring questions, propose features, or share logs with other researchers.
-                </p>
-              </div>
-              <Button
-                href="https://opensourceleg.discourse.group/"
+                href="https://available-inventions.umich.edu/product/osl-electronics"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 bg-[var(--light-green)] text-black border border-black hover:bg-[var(--light-blue)] hover:text-black w-full"
+                className="bg-[var(--light-green)] text-black border border-black hover:bg-[var(--light-blue)] hover:text-black"
               >
-                Visit the forum
+                Purchase at UM
+                <ArrowUpRight className="w-4 h-4 ml-2" />
+              </Button>
+              <Button
+                href={stepZipHref}
+                download="OSL-DAQ-supplement.zip"
+                variant="outline"
+                className="text-black border-black hover:bg-[var(--light-green)] hover:text-black"
+              >
+                Download OSL DAQ STEP (ZIP)
+                <ArrowUpRight className="w-4 h-4 ml-2" />
+              </Button>
+              <Button
+                href={datasheetHref}
+                download="OSL-DAQ.pdf"
+                variant="outline"
+                className="text-black border-black hover:bg-[var(--light-green)] hover:text-black"
+              >
+                Download datasheet
                 <ArrowUpRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
+          </div>
 
-            <div className="bg-white border border-black rounded-2xl p-6 shadow-xl flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Sparkles className="w-5 h-5 text-[var(--light-blue)]" />
-                  <h4 className="text-xl font-semibold text-gray-900">Tutorials</h4>
-                </div>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Guided setup for DAQ bring-up, calibration, and logging will land soon.
+          <section aria-labelledby="daq-layout" className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="space-y-2">
+                <h3 id="daq-layout" className="text-2xl sm:text-3xl font-light text-gray-900">
+                  DAQ board <span className="font-semibold">layout</span>
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  Front view of the DAQ board.
                 </p>
               </div>
-              <Button
-                href="/electronics/tutorials"
-                variant="outline"
-                className="mt-4 text-black border-black hover:bg-[var(--light-green)] hover:text-black w-full"
-              >
-                View roadmap
-              </Button>
             </div>
-          </div>
+
+            <div className="rounded-2xl border border-black/10 bg-white p-4 sm:p-6">
+              <Image
+                src="/downloads/DAQBoardImage.png"
+                alt="Open-Source Leg DAQ board front view"
+                width={1400}
+                height={900}
+                className="w-full h-auto object-contain"
+                priority
+              />
+            </div>
+          </section>
+
+        <section className="space-y-6 pb-8 border-b border-black/10">
+          <details className="group" open>
+            <summary className="flex flex-col gap-2 cursor-pointer list-none sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-1">
+                <SectionHeading title="Data Acquisition Architecture" accent="light-blue" />
+                <p className="text-sm text-gray-500 group-open:hidden">
+                  ADC, timing, gain, and power specifications at a glance.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Expand</span>
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--light-blue)]/20 border border-black/10 text-gray-900 transition-transform duration-200 group-open:rotate-180">
+                    v
+                  </span>
+                </span>
+            </summary>
+            <div className="mt-6 space-y-4">
+              <p className="text-gray-600 text-sm sm:text-base">Core ADC and analog front-end specifications.</p>
+              <div className="overflow-x-auto border border-black/10 rounded-xl">
+                <table className="w-full text-sm">
+                  <thead className="bg-[var(--light-blue)]/25">
+                    <tr>
+                      <th className="px-3 py-2 text-left font-semibold text-gray-900">Field</th>
+                      <th className="px-3 py-2 text-left font-semibold text-gray-900">Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Architecture</td><td className="px-3 py-2">Delta-Sigma</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Interface</td><td className="px-3 py-2">SPI</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Channels</td><td className="px-3 py-2">6</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Anti-aliasing cutoff (-3 dB)</td><td className="px-3 py-2">8 kHz</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Gain Stage 1 (fixed)</td><td className="px-3 py-2">Channels 1-3: 34, Channels 4-6: 151</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Gain Stage 2 (programmable)</td><td className="px-3 py-2">1-128</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Resolution</td><td className="px-3 py-2">24 bits</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Sampling rate</td><td className="px-3 py-2">250 Hz-32 kHz</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Operating voltage</td><td className="px-3 py-2">2.7 V-3.6 V</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Bipolar output</td><td className="px-3 py-2">+/-2.5 V</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Max output current</td><td className="px-3 py-2">250 mA</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <section className="space-y-6 pb-8 border-b border-black/10">
+          <details className="group" open>
+            <summary className="flex flex-col gap-2 cursor-pointer list-none sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-1">
+                <SectionHeading title="Dimensions & Connectors" accent="light-green" />
+                <p className="text-sm text-gray-500 group-open:hidden">
+                  Mechanical envelope and connector definitions.
+                </p>
+              </div>
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                  <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Expand</span>
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--light-blue)]/20 border border-black/10 text-gray-900 transition-transform duration-200 group-open:rotate-180">
+                    v
+                  </span>
+                </span>
+              </summary>
+              <div className="mt-6 space-y-4">
+                <p className="text-gray-600 text-sm sm:text-base">Board dimensions, mounting hole size, and connector interfaces.</p>
+                <div className="overflow-x-auto border border-black/10 rounded-xl">
+                <table className="w-full text-sm">
+                  <thead className="bg-[var(--light-green)]/30">
+                    <tr>
+                      <th className="px-3 py-2 text-left font-semibold text-gray-900">Field</th>
+                      <th className="px-3 py-2 text-left font-semibold text-gray-900">Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Length</td><td className="px-3 py-2">42 mm</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Width</td><td className="px-3 py-2">26 mm</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Mounting hole</td><td className="px-3 py-2">2.5 mm</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">SPI connector</td><td className="px-3 py-2">Molex Pico-Clasp, 6-pin</td></tr>
+                    <tr className="border-t border-black/10"><td className="px-3 py-2">Loadcell connector</td><td className="px-3 py-2">Molex Pico-Blade, 14-pin</td></tr>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+            </details>
+          </section>
+
+        <section className="space-y-6 pb-8 border-b border-black/10">
+          <details className="group" open>
+            <summary className="flex flex-col gap-2 cursor-pointer list-none sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-1">
+                <SectionHeading title="Pinout" accent="light-blue" />
+                <p className="text-sm text-gray-500 group-open:hidden">
+                  SPI and loadcell connector pin definitions.
+                </p>
+              </div>
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                  <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Expand</span>
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--light-blue)]/20 border border-black/10 text-gray-900 transition-transform duration-200 group-open:rotate-180">
+                    v
+                  </span>
+                </span>
+              </summary>
+              <div className="mt-6 space-y-4">
+                <p className="text-gray-600 text-sm sm:text-base">
+                  Pin-level connector mapping is documented in the DAQ datasheet.
+                </p>
+                <div className="rounded-2xl border border-black/10 bg-white p-4 sm:p-6">
+                  <Image
+                    src="/electronics/interface-board/DAQ-pinout.png"
+                    alt="DAQ pinout reference"
+                    width={1200}
+                    height={700}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </div>
+            </details>
+          </section>
+
         </div>
       </section>
     </div>
   )
 }
 
-
-
+function SectionHeading({
+  title,
+}: {
+  title: ReactNode
+  accent: "light-blue" | "light-green"
+}) {
+  return (
+    <h4 className="text-2xl sm:text-3xl font-light text-gray-900">
+      <span className="font-medium italic">{title}</span>
+    </h4>
+  )
+}

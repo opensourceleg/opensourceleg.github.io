@@ -2,6 +2,7 @@ export interface NavigationItem {
   title: string
   href: string
   description?: string
+  children?: NavigationItem[]
 }
 
 export interface NavigationDropdown {
@@ -72,7 +73,33 @@ export const navigationConfig: NavigationSection[] = [
       {
         title: "Tutorials",
         href: "#",
-        description: "Coming soon :)"
+        description: "Coming soon"
+      }
+    ]
+  },
+  {
+    title: "Electronics",
+    type: "featured",
+    featured: {
+      title: "Electronics",
+      description: "Signal conditioning, sensing, and integrations",
+      href: "/electronics"
+    },
+    items: [
+      {
+        title: "Interface Board",
+        href: "/electronics/interface-board",
+        description: "RPi CM5 interface board overview"
+      },
+      {
+        title: "DAQ",
+        href: "/electronics/daq",
+        description: "Data acquisition board overview"
+      },
+      {
+        title: "Tutorials",
+        href: "#",
+        description: "Coming soon"
       }
     ]
   },
@@ -114,8 +141,15 @@ export const navigationConfig: NavigationSection[] = [
       {
         title: "Dataset",
         href: "#",
-        description: "Coming soon :)"
+        description: "Coming soon"
+      },
+      {
+        title: "Lending Program",
+        href: "#",
+        description: "Coming soon"
       }
     ]
   },
 ]
+
+
