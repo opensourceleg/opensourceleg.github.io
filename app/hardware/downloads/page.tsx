@@ -236,7 +236,7 @@ export default function Downloads() {
             </p>
           </div>
           <Button 
-            href="https://cad.onshape.com/documents/43e6364e2a094611be7b3cb6/w/cb020faf6e878aaef4c7b3de/e/9e1efedfe6e6a295a51c7f38?renderMode=0&uiState=6692ead70074bb6b04618954"
+            href="https://cad.onshape.com/documents/3520551dd01cf402179e8687/w/87da2fb0a553b44a27833624/e/d9c95c04904f8d6a753006a4"
             target="_blank"
             rel="noopener noreferrer"
             variant="outline"
