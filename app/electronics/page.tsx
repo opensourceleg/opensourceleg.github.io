@@ -1,4 +1,4 @@
-import { PageHero } from "@/components/page-hero";
+﻿import { PageHero } from "@/components/page-hero";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Clock, Sparkles } from "lucide-react";
