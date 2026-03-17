@@ -94,7 +94,7 @@ export default function LendingProgram() {
                 <CardDescription>No deposit</CardDescription>
               </CardHeader>
               <CardContent className="text-sm text-gray-700">
-                Sign loan agreement. We don't take an upfront deposit; <b>damages are billed</b> per the agreement.
+                Sign loan agreement. We don&apos;t take an upfront deposit; <b>damages are billed</b> per the agreement.
               </CardContent>
             </Card>
 
@@ -126,12 +126,12 @@ export default function LendingProgram() {
         </div>
       </section>
 
-      {/* WHAT'S INCLUDED */}
+      {/* WHAT&apos;S INCLUDED */}
       <section className="py-16 px-4 sm:px-6" id="included">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
           <div>
             <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4">
-              What's <span className="relative font-medium italic">Included
+              What&apos;s <span className="relative font-medium italic">Included
                 <svg className="absolute -bottom-1 left-0 w-full h-2" viewBox="0 0 200 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 10C60 6 140 6 198 8" stroke="var(--light-green)" strokeWidth="6" strokeLinecap="round" />
                 </svg>
@@ -201,7 +201,7 @@ export default function LendingProgram() {
                 <CardDescription>No upfront deposit</CardDescription>
               </CardHeader>
               <CardContent className="text-sm text-gray-700">
-                We don't require a deposit. Per the loan agreement, <b>damages are billed</b> after inspection and parts/labor estimate.
+                We don&apos;t require a deposit. Per the loan agreement, <b>damages are billed</b> after inspection and parts/labor estimate.
               </CardContent>
             </Card>
 
@@ -342,7 +342,7 @@ export default function LendingProgram() {
             </span>
           </h3>
           <p className="text-white/90 max-w-3xl mx-auto mt-4">
-            Tell us about your project, dates, and team. We'll review, confirm readiness, and schedule a unit.
+            Tell us about your project, dates, and team. We&apos;ll review, confirm readiness, and schedule a unit.
           </p>
           <p className="text-white/80 max-w-3xl mx-auto mt-2 text-sm">
             * Human-subject projects are required to submit local IRB approval documentation before they can be approved.

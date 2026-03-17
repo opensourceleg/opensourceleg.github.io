@@ -154,7 +154,7 @@ export default function ElectronicsDAQ() {
           <details className="group" open>
             <summary className="flex flex-col gap-2 cursor-pointer list-none sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
-                <SectionHeading title="Dimensions & Connectors" accent="light-green" />
+                <SectionHeading title="Dimensions & Connectors" accent="light-blue" />
                 <p className="text-sm text-gray-500 group-open:hidden">
                   Mechanical envelope and connector definitions.
                 </p>
@@ -230,13 +230,16 @@ export default function ElectronicsDAQ() {
 
 function SectionHeading({
   title,
+  accent,
 }: {
   title: ReactNode
   accent: "light-blue" | "light-green"
 }) {
+  const accentClass = accent === "light-blue" ? "text-[var(--light-blue)]" : "text-[var(--light-green)]"
+
   return (
     <h4 className="text-2xl sm:text-3xl font-light text-gray-900">
-      <span className="font-medium italic">{title}</span>
+      <span className={`font-medium italic ${accentClass}`}>{title}</span>
     </h4>
   )
 }

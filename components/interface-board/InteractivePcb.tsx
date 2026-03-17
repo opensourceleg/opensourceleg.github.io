@@ -2,6 +2,7 @@
 
 import type { MouseEvent, ReactNode } from "react";
 import { useState } from "react";
+import Image from "next/image";
 import styles from "./interactive-pcb.module.css";
 
 type ComponentEntry = {
@@ -243,7 +244,7 @@ function PinoutPreview({ src, alt }: { src: string; alt: string }) {
         className={styles.pinoutButton}
         onClick={() => setIsOpen(true)}
       >
-        <img src={src} alt={alt} className={styles.pinoutImage} />
+        <Image src={src} alt={alt} width={640} height={480} className={styles.pinoutImage} />
         <span className={styles.enlargeIcon} aria-hidden="true">
           +
         </span>
@@ -254,9 +255,11 @@ function PinoutPreview({ src, alt }: { src: string; alt: string }) {
           onClick={() => setIsOpen(false)}
           role="presentation"
         >
-          <img
+          <Image
             src={src}
             alt={alt}
+            width={900}
+            height={660}
             className={styles.enlargedImage}
             onClick={(event) => event.stopPropagation()}
           />
@@ -304,7 +307,7 @@ export default function InteractivePcb() {
     const markerTop = parseFloat(component.position.top);
     const markerLeft = parseFloat(component.position.left);
 
-    let position = { top: "20px", left: "20px" };
+    const position = { top: "20px", left: "20px" };
 
     if (markerTop > 50 && markerLeft > 50) {
       if (component.name === "RPi Boot Jumper") {
@@ -346,7 +349,7 @@ export default function InteractivePcb() {
     return (
       <div className={styles.pcbViewSection}>
         <div className={styles.pcbContainer} onClick={handleBackgroundClick}>
-          <img src={image} alt={`${viewId} view`} className={styles.pcbImage} />
+          <Image src={image} alt={`${viewId} view`} width={900} height={600} className={styles.pcbImage} />
 
           {Object.entries(components).map(([id, component]) => (
             <div

@@ -155,7 +155,7 @@ export default function AvailabilityTimelineClient({ sheetUrl }: { sheetUrl: str
         const rows = parseCsv(csv)
         const next = buildAvailability(rows)
         if (active) setAvailability(next)
-      } catch (err) {
+      } catch {
         if (active) setError("Availability data is unavailable right now.")
       }
     }

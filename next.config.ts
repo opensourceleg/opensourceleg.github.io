@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
   
+  // Ensure Next.js knows the correct workspace root when multiple lockfiles exist
+  // (silences the multiple-lockfile/inferred-root warning and keeps tracing deterministic)
+  outputFileTracingRoot: __dirname,
+  
   // React strict mode for better development experience
   reactStrictMode: true,
   

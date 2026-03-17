@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import InteractivePcb from "@/components/interface-board/InteractivePcb";
@@ -50,8 +51,8 @@ export default function InterfaceBoardContent() {
                 id="pcb-layout"
                 title={
                   <>
-                    <span className="not-italic font-semibold">Interactive</span>{" "}
-                    <span className="not-italic font-light">PCB layout</span>
+                    <span className="not-italic font-semibold text-black">Interactive</span>{" "}
+                    <span className="not-italic font-light text-black">PCB layout</span>
                   </>
                 }
                 accent="light-blue"
@@ -69,7 +70,7 @@ export default function InterfaceBoardContent() {
           <details className="group" open>
             <summary className="flex flex-col gap-2 cursor-pointer list-none sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
-                <SectionHeading title="Power" accent="light-green" />
+                <SectionHeading title="Power" accent="light-blue" />
                 <p className="text-sm text-gray-500 group-open:hidden">
                   Input and output power specifications at a glance.
                 </p>
@@ -261,7 +262,7 @@ export default function InterfaceBoardContent() {
           <details className="group" open>
             <summary className="flex flex-col gap-2 cursor-pointer list-none sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
-                <SectionHeading title="Features" accent="light-green" />
+                <SectionHeading title="Features" accent="light-blue" />
                 <p className="text-sm text-gray-500 group-open:hidden">
                   Explore onboard features and component details.
                 </p>
@@ -388,7 +389,7 @@ export default function InterfaceBoardContent() {
           <details className="group" open>
             <summary className="flex flex-col gap-2 cursor-pointer list-none sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
-                <SectionHeading title="Mechanical specifications" accent="light-green" />
+                <SectionHeading title="Mechanical specifications" accent="light-blue" />
                 <p className="text-sm text-gray-500 group-open:hidden">
                   Mechanical dimensions and mounting details.
                 </p>
@@ -405,9 +406,11 @@ export default function InterfaceBoardContent() {
                 Mechanical dimensions and mounting specifications for the interface board.
               </p>
               <div className="overflow-x-auto border border-black/10 rounded-xl">
-                <img
+                <Image
                   src="/electronics/interface-board/mechanical_specs.png"
                   alt="Mechanical specifications"
+                  width={1600}
+                  height={900}
                   className="w-full h-auto"
                 />
               </div>
@@ -565,9 +568,11 @@ function SectionHeading({
   title: ReactNode;
   accent: "light-blue" | "light-green";
 }) {
+  const accentClass = accent === "light-blue" ? "text-[var(--light-blue)]" : "text-[var(--light-green)]";
+
   return (
     <h3 id={id} className="text-2xl sm:text-3xl font-light text-gray-900">
-      <span className="font-medium italic">{title}</span>
+      <span className={`font-medium italic ${accentClass}`}>{title}</span>
     </h3>
   );
 }

@@ -15,19 +15,21 @@ export default function Footer() {
       ]
     },
     {
-      title: "Electronics",
-      links: [
-        { title: "Overview", href: "/electronics" },
-        { title: "Documentation", href: "/electronics/documentation" },
-        { title: "Tutorials", href: "/electronics/tutorials" },
-      ]
-    },
-    {
       title: "Software", 
       links: [
         { title: "Overview", href: "/software" },
         { title: "API Documentation", href: "https://neurobionics.github.io/opensourceleg/" },
         { title: "Source", href: "https://github.com/neurobionics/opensourceleg" },
+      ]
+    },
+    {
+      title: "Electronics",
+      links: [
+        { title: "Overview", href: "/electronics" },
+        { title: "Documentation", href: "/electronics/documentation" },
+        { title: "Tutorials", href: "/electronics/tutorials" },
+        { title: "DAQ", href: "/electronics/daq" },
+        { title: "Interface", href: "/electronics/interface-board" },
       ]
     },
     {
