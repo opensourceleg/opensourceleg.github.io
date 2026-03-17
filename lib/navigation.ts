@@ -2,6 +2,7 @@ export interface NavigationItem {
   title: string
   href: string
   description?: string
+  disabled?: boolean
   children?: NavigationItem[]
 }
 
@@ -73,7 +74,8 @@ export const navigationConfig: NavigationSection[] = [
       {
         title: "Tutorials",
         href: "#",
-        description: "Coming soon"
+        description: "Coming soon",
+        disabled: true
       }
     ]
   },

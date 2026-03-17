@@ -140,13 +140,16 @@ describe('Footer Component', () => {
           link.getAttribute('href') === '/electronics'
         )
         expect(electronicsOverview).toBeInTheDocument()
-        expect(screen.getByRole('link', { name: 'Documentation' })).toHaveAttribute('href', '/electronics/documentation')
 
-        const tutorialLinks = screen.getAllByRole('link', { name: 'Tutorials' })
-        const electronicsTutorials = tutorialLinks.find(link => 
-          link.getAttribute('href') === '/electronics/tutorials'
-        )
-        expect(electronicsTutorials).toBeInTheDocument()
+        // Tutorials and Documentation are not currently available under Electronics
+        const allTutorialLinks = screen.getAllByRole('link', { name: 'Tutorials' })
+        expect(allTutorialLinks.some((link) => link.getAttribute('href') === '/electronics/tutorials')).toBe(false)
+
+        const allDocumentationLinks = screen.queryAllByRole('link', { name: 'Documentation' })
+        expect(allDocumentationLinks.some((link) => link.getAttribute('href') === '/electronics/documentation')).toBe(false)
+
+        expect(screen.getByRole('link', { name: 'DAQ' })).toHaveAttribute('href', '/electronics/daq')
+        expect(screen.getByRole('link', { name: 'Interface' })).toHaveAttribute('href', '/electronics/interface-board')
       })
     })
 
