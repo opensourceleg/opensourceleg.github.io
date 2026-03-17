@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import Footer from '@/components/shared/footer'
@@ -47,7 +47,7 @@ describe('Footer Component', () => {
       const mainContainer = container.querySelector('.max-w-7xl.mx-auto.px-4')
       expect(mainContainer).toBeInTheDocument()
       
-      const gridContainer = container.querySelector('.grid.grid-cols-2.md\\:grid-cols-2.lg\\:grid-cols-4')
+      const gridContainer = container.querySelector('.grid.grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-5')
       expect(gridContainer).toBeInTheDocument()
     })
   })
@@ -57,7 +57,7 @@ describe('Footer Component', () => {
       const currentYear = new Date().getFullYear()
       render(<Footer />)
       
-      expect(screen.getByText(`© ${currentYear} Open Source Leg`)).toBeInTheDocument()
+      expect(screen.getByText(`┬⌐ ${currentYear} Open Source Leg`)).toBeInTheDocument()
     })
 
     it('updates year when date changes', () => {
@@ -68,17 +68,18 @@ describe('Footer Component', () => {
       
       render(<Footer />)
       
-      expect(screen.getByText('© 2025 Open Source Leg')).toBeInTheDocument()
+      expect(screen.getByText('┬⌐ 2025 Open Source Leg')).toBeInTheDocument()
       
       vi.restoreAllMocks()
     })
   })
 
   describe('Footer Sections Structure', () => {
-    it('renders all four main sections', () => {
+    it('renders all main sections', () => {
       render(<Footer />)
       
       expect(screen.getByText('Hardware')).toBeInTheDocument()
+      expect(screen.getByText('Electronics')).toBeInTheDocument()
       expect(screen.getByText('Software')).toBeInTheDocument()
       expect(screen.getByText('Research')).toBeInTheDocument()
       expect(screen.getByText('Community')).toBeInTheDocument()
@@ -127,6 +128,28 @@ describe('Footer Component', () => {
           'text-xs',
           'block'
         )
+      })
+    })
+
+    describe('Electronics Section', () => {
+      it('renders electronics links', () => {
+        render(<Footer />)
+
+        const overviewLinks = screen.getAllByRole('link', { name: 'Overview' })
+        const electronicsOverview = overviewLinks.find(link => 
+          link.getAttribute('href') === '/electronics'
+        )
+        expect(electronicsOverview).toBeInTheDocument()
+
+        // Tutorials and Documentation are not currently available under Electronics
+        const allTutorialLinks = screen.getAllByRole('link', { name: 'Tutorials' })
+        expect(allTutorialLinks.some((link) => link.getAttribute('href') === '/electronics/tutorials')).toBe(false)
+
+        const allDocumentationLinks = screen.queryAllByRole('link', { name: 'Documentation' })
+        expect(allDocumentationLinks.some((link) => link.getAttribute('href') === '/electronics/documentation')).toBe(false)
+
+        expect(screen.getByRole('link', { name: 'DAQ' })).toHaveAttribute('href', '/electronics/daq')
+        expect(screen.getByRole('link', { name: 'Interface' })).toHaveAttribute('href', '/electronics/interface-board')
       })
     })
 
@@ -210,7 +233,7 @@ describe('Footer Component', () => {
     it('renders copyright with correct styling', () => {
       render(<Footer />)
       
-      const copyright = screen.getByText(/© \d+ Open Source Leg/)
+      const copyright = screen.getByText(/┬⌐ \d+ Open Source Leg/)
       expect(copyright).toHaveClass('text-muted-foreground', 'text-xs')
     })
   })
@@ -362,7 +385,7 @@ describe('Footer Component', () => {
       const { container } = render(<Footer />)
       
       const gridContainer = container.querySelector('.grid')
-      expect(gridContainer).toHaveClass('grid-cols-2', 'md:grid-cols-2', 'lg:grid-cols-4')
+      expect(gridContainer).toHaveClass('grid-cols-2', 'md:grid-cols-3', 'lg:grid-cols-5')
     })
 
     it('applies responsive spacing classes', () => {
@@ -434,7 +457,7 @@ describe('Footer Component', () => {
     it('has all expected footer sections', () => {
       render(<Footer />)
       
-      const expectedSections = ['Hardware', 'Software', 'Research', 'Community']
+      const expectedSections = ['Hardware', 'Electronics', 'Software', 'Research', 'Community']
       expectedSections.forEach(section => {
         expect(screen.getByText(section)).toBeInTheDocument()
       })
@@ -444,7 +467,7 @@ describe('Footer Component', () => {
       render(<Footer />)
       
       // Each section should have at least 3 links
-      const sections = ['Hardware', 'Software', 'Research', 'Community']
+      const sections = ['Hardware', 'Electronics', 'Software', 'Research', 'Community']
       
       sections.forEach(sectionName => {
         const sectionElement = screen.getByText(sectionName).closest('div')
@@ -483,7 +506,7 @@ describe('Footer Component', () => {
       render(<Footer />)
       
       const headings = screen.getAllByRole('heading', { level: 3 })
-      expect(headings).toHaveLength(4) // Hardware, Software, Research, Community
+      expect(headings).toHaveLength(5) // Hardware, Electronics, Software, Research, Community
     })
 
     it('provides alt text for logo', () => {

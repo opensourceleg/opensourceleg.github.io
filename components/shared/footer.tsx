@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import Image from "next/image"
 import { Github, Twitter, Linkedin, Mail, MessageSquare } from "lucide-react"
 
@@ -20,6 +20,14 @@ export default function Footer() {
         { title: "Overview", href: "/software" },
         { title: "API Documentation", href: "https://neurobionics.github.io/opensourceleg/" },
         { title: "Source", href: "https://github.com/neurobionics/opensourceleg" },
+      ]
+    },
+    {
+      title: "Electronics",
+      links: [
+        { title: "Overview", href: "/electronics" },
+        { title: "DAQ", href: "/electronics/daq" },
+        { title: "Interface", href: "/electronics/interface-board" },
       ]
     },
     {
@@ -72,7 +80,7 @@ export default function Footer() {
     <footer className="bg-background border-t border-border mt-20">
       <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-6 md:mb-8 max-w-lg md:max-w-xl lg:max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 mb-6 md:mb-8 max-w-lg md:max-w-4xl lg:max-w-6xl mx-auto">
           {footerSections.map((section, index) => (
             <div key={section.title} className={`flex flex-col ${index % 2 === 1 ? 'items-end lg:items-start' : ''}`}>
                 <h3 className="font-medium text-foreground mb-2 md:mb-3 text-sm">
@@ -110,7 +118,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-muted-foreground text-xs">
-              © {currentYear} Open Source Leg
+              ┬⌐ {currentYear} Open Source Leg
             </p>
           </div>
 

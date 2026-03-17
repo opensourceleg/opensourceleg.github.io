@@ -119,14 +119,26 @@ export default function Navbar() {
                                   <div className="flex-1 flex flex-col justify-center space-y-2">
                                     {section.items?.map((item) => (
                                       <div key={item.title} className="flex-1 flex items-center">
-                                        <NavigationMenuLink asChild className="w-full">
-                                          <Link href={item.href} className="block p-3 rounded-md hover:bg-accent transition-colors h-full flex flex-col justify-center">
+                                        {item.disabled ? (
+                                          <div
+                                            aria-disabled="true"
+                                            className="block w-full p-3 rounded-md h-full flex flex-col justify-center opacity-60 cursor-not-allowed select-none"
+                                          >
                                             <div className="text-sm leading-none font-medium mb-1">{item.title}</div>
                                             <p className="text-muted-foreground text-xs leading-snug">
                                               {item.description}
                                             </p>
-                                          </Link>
-                                        </NavigationMenuLink>
+                                          </div>
+                                        ) : (
+                                          <NavigationMenuLink asChild className="w-full">
+                                            <Link href={item.href} className="block p-3 rounded-md hover:bg-accent transition-colors h-full flex flex-col justify-center">
+                                              <div className="text-sm leading-none font-medium mb-1">{item.title}</div>
+                                              <p className="text-muted-foreground text-xs leading-snug">
+                                                {item.description}
+                                              </p>
+                                            </Link>
+                                          </NavigationMenuLink>
+                                        )}
                                       </div>
                                     ))}
                                   </div>
@@ -139,16 +151,25 @@ export default function Navbar() {
                                 }`}>
                                   {section.items.map((item) => (
                                     item.description ? (
-                                      <ListItem key={item.title} href={item.href} title={item.title}>
+                                      <ListItem key={item.title} href={item.href} title={item.title} disabled={item.disabled}>
                                         {item.description}
                                       </ListItem>
                                     ) : (
                                       <li key={item.title}>
-                                        <NavigationMenuLink asChild>
-                                          <Link href={item.href}>
-                                            <div className="font-medium">{item.title}</div>
-                                          </Link>
-                                        </NavigationMenuLink>
+                                        {item.disabled ? (
+                                          <div
+                                            aria-disabled="true"
+                                            className="font-medium text-muted-foreground opacity-60 cursor-not-allowed select-none p-2"
+                                          >
+                                            {item.title}
+                                          </div>
+                                        ) : (
+                                          <NavigationMenuLink asChild>
+                                            <Link href={item.href}>
+                                              <div className="font-medium">{item.title}</div>
+                                            </Link>
+                                          </NavigationMenuLink>
+                                        )}
                                       </li>
                                     )
                                   ))}
@@ -259,19 +280,34 @@ export default function Navbar() {
                             </Link>
                           )}
                           {section.items?.map((item) => (
-                            <Link
-                              key={item.title}
-                              href={item.href}
-                              className="block px-3 py-2 rounded-md hover:bg-accent/50 transition-colors text-sm"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              <div className="font-medium">{item.title}</div>
-                              {item.description && (
-                                <div className="text-muted-foreground text-xs mt-1">
-                                  {item.description}
-                                </div>
-                              )}
-                            </Link>
+                            item.disabled ? (
+                              <div
+                                key={item.title}
+                                aria-disabled="true"
+                                className="block px-3 py-2 rounded-md text-sm opacity-60 cursor-not-allowed select-none"
+                              >
+                                <div className="font-medium">{item.title}</div>
+                                {item.description && (
+                                  <div className="text-muted-foreground text-xs mt-1">
+                                    {item.description}
+                                  </div>
+                                )}
+                              </div>
+                            ) : (
+                              <Link
+                                key={item.title}
+                                href={item.href}
+                                className="block px-3 py-2 rounded-md hover:bg-accent/50 transition-colors text-sm"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                <div className="font-medium">{item.title}</div>
+                                {item.description && (
+                                  <div className="text-muted-foreground text-xs mt-1">
+                                    {item.description}
+                                  </div>
+                                )}
+                              </Link>
+                            )
                           ))}
                         </div>
                       )}
@@ -304,18 +340,31 @@ function ListItem({
   title,
   children,
   href,
+  disabled,
   ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+}: React.ComponentPropsWithoutRef<"li"> & { href: string; disabled?: boolean }) {
   return (
     <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link href={href}>
-          <div className="text-sm leading-none font-medium">{title}</div>
+      {disabled ? (
+        <div
+          aria-disabled="true"
+          className="text-sm leading-none font-medium text-muted-foreground opacity-60 cursor-not-allowed select-none p-2"
+        >
+          <div>{title}</div>
           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
             {children}
           </p>
-        </Link>
-      </NavigationMenuLink>
+        </div>
+      ) : (
+        <NavigationMenuLink asChild>
+          <Link href={href}>
+            <div className="text-sm leading-none font-medium">{title}</div>
+            <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+              {children}
+            </p>
+          </Link>
+        </NavigationMenuLink>
+      )}
     </li>
   )
 }

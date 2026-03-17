@@ -6,16 +6,25 @@ interface PageHeroProps {
   description: string
   className?: string
   primaryButton?: {
-    href: string
+    href?: string
     text: string
     icon?: ReactNode
     target?: string
+    disabled?: boolean
   }
   secondaryButton?: {
-    href: string
+    href?: string
     text: string
     icon?: ReactNode
     target?: string
+    disabled?: boolean
+  }
+  middleButton?: {
+    href?: string
+    text: string
+    icon?: ReactNode
+    target?: string
+    disabled?: boolean
   }
 }
 
@@ -24,6 +33,7 @@ export function PageHero({
   description, 
   className = "",
   primaryButton,
+  middleButton,
   secondaryButton 
 }: PageHeroProps) {
   return (
@@ -36,31 +46,79 @@ export function PageHero({
           {description}
         </p>
         
-        {(primaryButton || secondaryButton) && (
+        {(primaryButton || middleButton || secondaryButton) && (
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-8 items-center justify-center">
             {primaryButton && (
-              <Button 
-                href={primaryButton.href}
-                target={primaryButton.target}
-                rel={primaryButton.target === "_blank" ? "noopener noreferrer" : undefined}
-                className="bg-[var(--light-green)] text-black border hover:bg-[var(--light-blue)] rounded-lg px-4 sm:px-6 py-4 sm:py-6 text-base sm:text-lg flex items-center justify-center gap-2"
-              >
-                {primaryButton.icon}
-                {primaryButton.text}
-              </Button>
+              primaryButton.disabled || !primaryButton.href ? (
+                <Button
+                  disabled
+                  aria-disabled="true"
+                  className="bg-[var(--light-green)] text-black border rounded-lg px-4 sm:px-6 py-4 sm:py-6 text-base sm:text-lg flex items-center justify-center gap-2 cursor-not-allowed"
+                >
+                  {primaryButton.icon}
+                  {primaryButton.text}
+                </Button>
+              ) : (
+                <Button 
+                  href={primaryButton.href}
+                  target={primaryButton.target}
+                  rel={primaryButton.target === "_blank" ? "noopener noreferrer" : undefined}
+                  className="bg-[var(--light-green)] text-black border hover:bg-[var(--light-blue)] rounded-lg px-4 sm:px-6 py-4 sm:py-6 text-base sm:text-lg flex items-center justify-center gap-2"
+                >
+                  {primaryButton.icon}
+                  {primaryButton.text}
+                </Button>
+              )
+            )}
+
+            {middleButton && (
+              middleButton.disabled || !middleButton.href ? (
+                <Button
+                  disabled
+                  aria-disabled="true"
+                  variant="outline"
+                  className="text-black border-black rounded-lg px-4 sm:px-6 py-4 sm:py-6 text-base sm:text-lg flex items-center justify-center gap-2 cursor-not-allowed"
+                >
+                  {middleButton.icon}
+                  {middleButton.text}
+                </Button>
+              ) : (
+                <Button
+                  href={middleButton.href}
+                  target={middleButton.target}
+                  rel={middleButton.target === "_blank" ? "noopener noreferrer" : undefined}
+                  variant="outline"
+                  className="text-black border-black hover:bg-[var(--light-blue)] hover:text-black rounded-lg px-4 sm:px-6 py-4 sm:py-6 text-base sm:text-lg flex items-center justify-center gap-2"
+                >
+                  {middleButton.icon}
+                  {middleButton.text}
+                </Button>
+              )
             )}
             
             {secondaryButton && (
-              <Button
-                href={secondaryButton.href}
-                target={secondaryButton.target}
-                rel={secondaryButton.target === "_blank" ? "noopener noreferrer" : undefined}
-                variant="outline"
-                className="text-black border-black hover:bg-[var(--light-blue)] hover:text-black rounded-lg px-4 sm:px-6 py-4 sm:py-6 text-base sm:text-lg flex items-center justify-center gap-2"
-              >
-                {secondaryButton.icon}
-                {secondaryButton.text}
-              </Button>
+              secondaryButton.disabled || !secondaryButton.href ? (
+                <Button
+                  disabled
+                  aria-disabled="true"
+                  variant="outline"
+                  className="text-black border-black rounded-lg px-4 sm:px-6 py-4 sm:py-6 text-base sm:text-lg flex items-center justify-center gap-2 cursor-not-allowed"
+                >
+                  {secondaryButton.icon}
+                  {secondaryButton.text}
+                </Button>
+              ) : (
+                <Button
+                  href={secondaryButton.href}
+                  target={secondaryButton.target}
+                  rel={secondaryButton.target === "_blank" ? "noopener noreferrer" : undefined}
+                  variant="outline"
+                  className="text-black border-black hover:bg-[var(--light-blue)] hover:text-black rounded-lg px-4 sm:px-6 py-4 sm:py-6 text-base sm:text-lg flex items-center justify-center gap-2"
+                >
+                  {secondaryButton.icon}
+                  {secondaryButton.text}
+                </Button>
+              )
             )}
           </div>
         )}
