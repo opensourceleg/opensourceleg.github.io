@@ -102,7 +102,7 @@ export default function InterfaceBoardContent() {
                       <tr className="border-t border-black/10">
                         <td className="px-3 py-2 font-semibold">J1</td>
                         <td className="px-3 py-2">XT30</td>
-                        <td className="px-3 py-2">15 - 60</td>
+                        <td className="px-3 py-2">15 - 42</td>
                         <td className="px-3 py-2">30.2</td>
                       </tr>
                       <tr className="border-t border-black/10">

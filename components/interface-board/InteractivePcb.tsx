@@ -132,8 +132,8 @@ const backComponents: Record<string, ComponentEntry> = {
     category: "communication",
   },
   "power-input": {
-    name: "15-60V Input",
-    description: "XT30 connector for 15-60V input power from battery.",
+    name: "15-42V Input",
+    description: "XT30 connector for 15-42V input power from battery.",
     position: { top: "34%", left: "91%" },
     boxArea: { top: "18%", left: "73%", width: "26%", height: "31%" },
     category: "psu",
