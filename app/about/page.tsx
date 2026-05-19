@@ -7,47 +7,6 @@ import Image from "next/image"
 import { team } from "@/lib/team"
 
 export default function About() {
-  const TeamCard = ({ member }: { member: any }) => {
-    const CardContent = (
-      <>
-        <Image
-          src={member.imageUrl}
-          alt={member.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 22vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-          <h4 className="font-semibold mb-1 text-sm">{member.name}</h4>
-          <p className="text-[var(--light-green)] font-medium mb-1 text-xs">{member.role}</p>
-          {member.title && (
-            <p className="text-xs text-gray-200 mb-1">{member.title}</p>
-          )}
-          <p className="text-xs text-gray-300">{member.affliation}</p>
-        </div>
-      </>
-    );
-
-    if (member.profileUrl) {
-      return (
-        <a
-          href={member.profileUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative rounded-lg border-2 border-black hover:border-[6px] hover:border-[var(--light-blue)] overflow-hidden aspect-[4/5] group hover:scale-105 transition-all duration-300 cursor-pointer"
-        >
-          {CardContent}
-        </a>
-      );
-    }
-
-    return (
-      <div className="relative rounded-lg border-2 border-black hover:border-[6px] hover:border-[var(--light-blue)] overflow-hidden aspect-[4/5] group hover:scale-105 transition-all duration-300">
-        {CardContent}
-      </div>
-    );
-  }
   return (
     <div className="min-h-screen pt-12">
       <PageHero 
@@ -646,10 +605,52 @@ export default function About() {
 
           {/* Core Team */}
           <div className="mb-16">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-7xl mx-auto">
-              {team.slice(0, 5).map((member) => (
-                <TeamCard key={member.name} member={member} />
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              {team.slice(0, 4).map((member, index) => {
+                const CardContent = (
+                  <>
+                    <Image
+                      src={member.imageUrl}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    
+                    {/* Content */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <h4 className="font-semibold mb-2 text-lg">{member.name}</h4>
+                      <p className="text-[var(--light-green)] font-medium mb-1">{member.role}</p>
+                      {member.title && (
+                        <p className="text-sm text-gray-200 mb-1">{member.title}</p>
+                      )}
+                      <p className="text-sm text-gray-300">{member.affliation}</p>
+                    </div>
+                  </>
+                );
+
+                if (member.profileUrl) {
+                  return (
+                    <a
+                      key={index}
+                      href={member.profileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative rounded-xl border-2 border-black hover:border-[6px] hover:border-[var(--light-blue)] overflow-hidden aspect-[3/4] group hover:scale-105 transition-all duration-300 cursor-pointer"
+                    >
+                      {CardContent}
+                    </a>
+                  );
+                }
+
+                return (
+                  <div key={index} className="relative rounded-xl border-2 border-black hover:border-[6px] hover:border-[var(--light-blue)] overflow-hidden aspect-[3/4] group hover:scale-105 transition-all duration-300">
+                    {CardContent}
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -673,7 +674,7 @@ export default function About() {
                </svg>
              </span></h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {team.slice(5).map((member, index) => {
+              {team.slice(4).map((member, index) => {
                 const CardContent = (
                   <>
                     <Image

@@ -16,26 +16,26 @@ type ComponentEntry = {
 const ASSET_BASE = "/electronics/interface-board";
 const categoryColor = "var(--light-blue)";
 const FRONT_PCB_IMAGE = `${ASSET_BASE}/pcb-front.png`;
-const BACK_PCB_IMAGE = `${ASSET_BASE}/pcb-back.png`;
+const BACK_PCB_IMAGE = `${ASSET_BASE}/pcb-layout.png`;
 
 const frontComponents: Record<string, ComponentEntry> = {
   "sd-card": {
     name: "SD Card Slot",
-    description: "Micro SD card slot for flashing RPi",
-    position: { top: "68%", left: "12%" },
-    boxArea: { top: "49%", left: "0%", width: "26%", height: "34%" },
+    description: "Micro SD card slot for flashing RPi.",
+    position: { top: "68%", left: "14%" },
+    boxArea: { top: "49%", left: "2%", width: "25%", height: "34%" },
     category: "power",
   },
   "osl-website": {
     name: "OSL Website",
-    description: "Links to the Open Source Leg website",
-    position: { top: "65%", left: "71%" },
-    boxArea: { top: "55%", left: "63.5%", width: "14%", height: "18.5%" },
+    description: "Links to the Open-Source Leg website.",
+    position: { top: "71%", left: "75%" },
+    boxArea: { top: "61%", left: "68%", width: "13.5%", height: "18.5%" },
     category: "power",
   },
   "cm5-connector": {
     name: "RPi CM5 Receptacle",
-    description: "Primary CM5 module connector for board installation and mechanical alignment.",
+    description: "Connector for the RPi CM5 module.",
     position: { top: "10%", left: "47%" },
     boxArea: { top: "2%", left: "24.5%", width: "42%", height: "15%" },
     category: "main",
@@ -77,7 +77,7 @@ const backComponents: Record<string, ComponentEntry> = {
     name: "SPI-1",
     description: (
       <>
-        <p>SPI bus with SCLK, MISO, MOSI, and three chip select lines for multiple peripherals.</p>
+        <p>SPI bus with SCLK, MISO, MOSI, and three chip select lines.</p>
         <PinoutPreview
           src={`${ASSET_BASE}/SPI1_pinout.png`}
           alt="SPI-1 pinout"
@@ -107,7 +107,7 @@ const backComponents: Record<string, ComponentEntry> = {
     name: "UART-2",
     description: (
       <>
-        <p>UART port 2 with Molex PicoClasp connector for serial devices.</p>
+        <p>UART port 2 with Molex PicoClasp connector.</p>
         <PinoutPreview
           src={`${ASSET_BASE}/UART2_pinout.png`}
           alt="UART-2 pinout"
@@ -122,7 +122,7 @@ const backComponents: Record<string, ComponentEntry> = {
     name: "CAN-0",
     description: (
       <>
-        <p>CAN0 interface for Controller Area Network communication.</p>
+        <p>CAN0 interface for communication over the Controller Area Network bus.</p>
         <PinoutPreview
           src={`${ASSET_BASE}/CAN0_pinout.png`}
           alt="CAN0 pinout"
@@ -133,31 +133,16 @@ const backComponents: Record<string, ComponentEntry> = {
     boxArea: { top: "20%", left: "31%", width: "11%", height: "12%" },
     category: "communication",
   },
-  "can1-module": {
-    name: "CAN-1",
-    description: (
-      <>
-        <p>CAN1 interface for Controller Area Network communication.</p>
-        <PinoutPreview
-          src={`${ASSET_BASE}/CAN0_pinout.png`}
-          alt="CAN1 pinout"
-        />
-      </>
-    ),
-    position: { top: "38%", left: "32.5%" },
-    boxArea: { top: "33%", left: "26.5%", width: "11%", height: "12%" },
-    category: "communication",
-  },
   "power-input": {
-    name: "15-53V Input",
-    description: "XT30 connector for 15-53V input power from battery or adapter. Supports the board's primary power rail and protection circuits.",
+    name: "15-42V Input",
+    description: "XT30 connector for 15-42V input power from battery.",
     position: { top: "34%", left: "91%" },
     boxArea: { top: "18%", left: "73%", width: "26%", height: "31%" },
     category: "psu",
   },
   "signal-leds": {
     name: "Signal LEDs",
-    description: "Status LEDs: 5V, 3V3, PWR, ACT, and programmable WS2812B LED for diagnostics.",
+    description: "Status LEDs: 5V, 3V3, PWR, ACT, and programmable LED.",
     position: { top: "82%", left: "37.25%" },
     boxArea: { top: "74%", left: "33%", width: "7%", height: "24%" },
     category: "features",
@@ -195,7 +180,7 @@ const backComponents: Record<string, ComponentEntry> = {
     name: "RPi Boot Jumper",
     description: (
       <>
-        <p>Boot mode jumper for flashing CM5 via USB and selecting recovery boot.</p>
+        <p>Boot mode jumper for flashing CM5 via USB (eMMC mode).</p>
         <PinoutPreview
           src={`${ASSET_BASE}/RPIBOOT_pinout.png`}
           alt="RPi boot jumper pinout"
@@ -238,15 +223,15 @@ const backComponents: Record<string, ComponentEntry> = {
   "imu": {
     name: "IMU",
     description: "Inertial Measurement Unit for motion and orientation sensing.",
-    position: { top: "40%", left: "55%" },
-    boxArea: { top: "34%", left: "50%", width: "8%", height: "12%" },
+    position: { top: "59.5%", left: "59%" },
+    boxArea: { top: "53%", left: "54.5%", width: "8%", height: "12%" },
     category: "components",
   },
   "usb-c": {
     name: "USB-C Port",
-    description: "USB-C data ports for high-speed peripherals. J7/J8 are data-only and should not be used as the primary power input.",
+    description: "USB-C data ports for high-speed data transfer between devices.",
     position: { top: "30%", left: "10%" },
-    boxArea: { top: "18%", left: "0%", width: "16%", height: "58%" },
+    boxArea: { top: "18%", left: "1%", width: "16%", height: "58%" },
     category: "components",
   },
 };

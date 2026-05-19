@@ -1,5 +1,4 @@
-import type { LucideIcon } from "lucide-react"
-import { Move3DIcon, ComputerIcon, Code2, CircuitBoard } from "lucide-react"
+import { LucideIcon, Move3DIcon, ComputerIcon, Code2, CircuitBoard } from "lucide-react"
 
 export interface ToolPanel {
   id: string

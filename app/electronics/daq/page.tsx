@@ -211,7 +211,7 @@ export default function ElectronicsDAQ() {
                 </p>
                 <div className="rounded-2xl border border-black/10 bg-white p-4 sm:p-6">
                   <Image
-                    src="/downloads/DAQ-PinOUt.png"
+                    src="/electronics/interface-board/DAQ-pinout.png"
                     alt="DAQ pinout reference"
                     width={1200}
                     height={700}

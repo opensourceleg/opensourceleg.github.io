@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import {
   Power,
   Lightbulb,
@@ -35,16 +33,16 @@ const features: Feature[] = [
     description: (
       <ul className="space-y-1 text-sm text-gray-700">
         <li>
-          <strong>5V:</strong> Indicates power on the 5V rail
+          <strong>5V:</strong> Indicates power on the 5V rail.
         </li>
         <li>
-          <strong>3V3:</strong> Indicates power on the 3.3V rail
+          <strong>3V3:</strong> Indicates power on the 3.3V rail.
         </li>
         <li>
-          <strong>PWR:</strong> The CM5 is receiving sufficient power and is turned on
+          <strong>PWR:</strong> CM5 receiving sufficient power.
         </li>
         <li>
-          <strong>ACT:</strong> The flashing green light indicates the CM5 is running and/or accessing the OS
+          <strong>ACT:</strong> Indicates CM5 is running and accessing storage.
         </li>
       </ul>
     ),
@@ -56,14 +54,10 @@ const features: Feature[] = [
     description: (
       <div className="space-y-2 text-sm text-gray-700">
         <div>
-          <strong>Part Number:</strong>
-          <br />
-          WS2812B-2020
+          <strong>Part number:</strong> WS2812B-2020
         </div>
         <div>
-          <strong>Protocol:</strong>
-          <br />
-          Single-wire SPI (GPIO 14)
+          <strong>Protocol:</strong> Single-wire SPI (GPIO 2)
         </div>
       </div>
     ),
@@ -73,35 +67,21 @@ const features: Feature[] = [
     title: "IMU",
     icon: <Radar className="w-4 h-4" />,
     description: (
-      <div className="space-y-4 text-sm text-gray-700">
+      <div className="space-y-2 text-sm text-gray-700">
         <div>
           <strong>Part number:</strong> BHI260AP
         </div>
         <div>
           <strong>Protocol:</strong> SPI (SPI-0, CS-2)
         </div>
-        <div className="rounded-2xl overflow-hidden border border-black/10 bg-white">
-          <Image
-            src="/electronics/interface-board/IMU_sensing_axes.png"
-            alt="IMU sensing axes"
-            width={640}
-            height={360}
-            className="w-full object-cover"
-          />
-        </div>
-        <p className="text-xs text-gray-500">
-          Image source: <Link href="https://www.bosch-sensortec.com/en/products/smart-sensor-systems/bhi260ap" target="_blank" rel="noopener noreferrer" className="underline text-[var(--light-blue)] hover:text-[var(--light-green)]">
-            Bosch Sensortec BHI260AP Datasheet
-          </Link>
-        </p>
       </div>
     ),
   },
   {
     id: "sd-card",
-    title: "SD Card Slot",
+    title: "SD card slot",
     icon: <Database className="w-4 h-4" />,
-    description: 'To be used with CM5 "lite" module (version of CM5 without onboard storage).',
+    description: 'For CM5 "lite" modules without onboard storage.',
   },
   {
     id: "rtc",

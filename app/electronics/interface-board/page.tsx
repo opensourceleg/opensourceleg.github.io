@@ -18,10 +18,9 @@ export default function InterfaceBoard() {
           icon: <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5" />,
         }}
         middleButton={{
-          href: "https://available-inventions.umich.edu/product/osl-electronics--interface-pcb-for-rpi-cm-5",
-          target: "_blank",
-          text: "Purchase at UM",
+          text: "Purchase at UM (coming soon)",
           icon: <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />,
+          disabled: true,
         }}
         secondaryButton={{
           href: "/electronics#modules",
