@@ -20,7 +20,6 @@ export default function InterfaceBoard() {
         middleButton={{
           href: "https://available-inventions.umich.edu/product/osl-electronics--interface-pcb-for-rpi-cm-5",
           target: "_blank",
-          rel: "noopener noreferrer",
           text: "Purchase at UM",
           icon: <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />,
         }}
