@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Power,
   Lightbulb,
@@ -39,10 +40,10 @@ const features: Feature[] = [
           <strong>3V3:</strong> Indicates power on the 3.3V rail.
         </li>
         <li>
-          <strong>PWR:</strong> CM5 receiving sufficient power.
+          <strong>PWR:</strong> The CM5 is receiving sufficient power and is turned on.
         </li>
         <li>
-          <strong>ACT:</strong> Indicates CM5 is running and accessing storage.
+          <strong>ACT:</strong> The flashing green light indicates the CM5 is running and/or accessing the OS.
         </li>
       </ul>
     ),
@@ -54,10 +55,10 @@ const features: Feature[] = [
     description: (
       <div className="space-y-2 text-sm text-gray-700">
         <div>
-          <strong>Part number:</strong> WS2812B-2020
+          <strong>Part Number:</strong> WS2812B-2020
         </div>
         <div>
-          <strong>Protocol:</strong> Single-wire SPI (GPIO 2)
+          <strong>Protocol:</strong> Single-wire SPI (GPIO 14)
         </div>
       </div>
     ),
@@ -69,19 +70,31 @@ const features: Feature[] = [
     description: (
       <div className="space-y-2 text-sm text-gray-700">
         <div>
-          <strong>Part number:</strong> BHI260AP
+          <strong>Part Number:</strong> BHI260AP
         </div>
         <div>
-          <strong>Protocol:</strong> SPI (SPI-0, CS-2)
+          <strong>Protocol:</strong> SPI (SPI-0, CS-1)
+        </div>
+        <div className="overflow-hidden rounded-2xl border border-black/10 bg-white p-3">
+          <Image
+            src="/electronics/interface-board/IMU_sensing_axes.png"
+            alt="IMU Sensing Axes Orientation"
+            width={560}
+            height={320}
+            className="w-full h-auto rounded-xl"
+          />
+          <p className="mt-2 text-xs text-gray-500">
+            Image source: <a href="https://www.bosch-sensortec.com/products/smart-sensor-systems/bhi260ap/" target="_blank" rel="noopener noreferrer" className="underline text-[var(--light-blue)] hover:text-[var(--light-green)]">Bosch Sensortec BHI260AP Datasheet</a>
+          </p>
         </div>
       </div>
     ),
   },
   {
     id: "sd-card",
-    title: "SD card slot",
+    title: "SD Card Slot",
     icon: <Database className="w-4 h-4" />,
-    description: 'For CM5 "lite" modules without onboard storage.',
+    description: 'To be used with CM5 "lite" module (version of CM5 without onboard storage).',
   },
   {
     id: "rtc",

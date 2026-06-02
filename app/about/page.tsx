@@ -605,8 +605,9 @@ export default function About() {
 
           {/* Core Team */}
           <div className="mb-16">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              {team.slice(0, 4).map((member, index) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-10 gap-y-12 max-w-6xl mx-auto justify-items-center">
+              {team.slice(0, 5).map((member, index) => {
+                const cardWrapper = `relative rounded-lg border-2 border-black hover:border-[6px] hover:border-[var(--light-blue)] overflow-hidden aspect-[3/4] w-full max-w-[26rem] group hover:scale-105 transition-all duration-300 ${member.profileUrl ? "cursor-pointer" : ""} ${index === 2 ? "justify-self-center" : ""}`;
                 const CardContent = (
                   <>
                     <Image
@@ -620,13 +621,13 @@ export default function About() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     
                     {/* Content */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h4 className="font-semibold mb-2 text-lg">{member.name}</h4>
-                      <p className="text-[var(--light-green)] font-medium mb-1">{member.role}</p>
+                    <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
+                      <h4 className="font-semibold mb-2 text-sm">{member.name}</h4>
+                      <p className="text-[var(--light-green)] text-sm font-medium mb-1">{member.role}</p>
                       {member.title && (
-                        <p className="text-sm text-gray-200 mb-1">{member.title}</p>
+                        <p className="text-xs text-gray-200 mb-1">{member.title}</p>
                       )}
-                      <p className="text-sm text-gray-300">{member.affliation}</p>
+                      <p className="text-xs text-gray-300">{member.affliation}</p>
                     </div>
                   </>
                 );
@@ -638,7 +639,7 @@ export default function About() {
                       href={member.profileUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative rounded-xl border-2 border-black hover:border-[6px] hover:border-[var(--light-blue)] overflow-hidden aspect-[3/4] group hover:scale-105 transition-all duration-300 cursor-pointer"
+                      className={cardWrapper}
                     >
                       {CardContent}
                     </a>
@@ -646,7 +647,7 @@ export default function About() {
                 }
 
                 return (
-                  <div key={index} className="relative rounded-xl border-2 border-black hover:border-[6px] hover:border-[var(--light-blue)] overflow-hidden aspect-[3/4] group hover:scale-105 transition-all duration-300">
+                  <div key={index} className={cardWrapper}>
                     {CardContent}
                   </div>
                 );
@@ -673,8 +674,8 @@ export default function About() {
                  />
                </svg>
              </span></h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {team.slice(4).map((member, index) => {
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+              {team.slice(5).map((member, index) => {
                 const CardContent = (
                   <>
                     <Image
@@ -689,11 +690,11 @@ export default function About() {
                     
                     {/* Content */}
                     <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
-                      <h4 className="font-semibold mb-1 text-sm">{member.name}</h4>
+                      <h4 className="font-semibold mb-1 text-[0.82rem]">{member.name}</h4>
                       {member.title && (
-                        <p className="text-xs text-gray-200 mb-1">{member.title}</p>
+                        <p className="text-[0.7rem] text-gray-200 mb-1">{member.title}</p>
                       )}
-                      <p className="text-xs text-gray-300">{member.affliation}</p>
+                      <p className="text-[0.7rem] text-gray-300">{member.affliation}</p>
                     </div>
                   </>
                 );

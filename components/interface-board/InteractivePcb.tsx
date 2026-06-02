@@ -16,21 +16,21 @@ type ComponentEntry = {
 const ASSET_BASE = "/electronics/interface-board";
 const categoryColor = "var(--light-blue)";
 const FRONT_PCB_IMAGE = `${ASSET_BASE}/pcb-front.png`;
-const BACK_PCB_IMAGE = `${ASSET_BASE}/pcb-layout.png`;
+const BACK_PCB_IMAGE = `${ASSET_BASE}/pcb-back.png`;
 
 const frontComponents: Record<string, ComponentEntry> = {
   "sd-card": {
     name: "SD Card Slot",
     description: "Micro SD card slot for flashing RPi.",
-    position: { top: "68%", left: "14%" },
-    boxArea: { top: "49%", left: "2%", width: "25%", height: "34%" },
+    position: { top: "68%", left: "12%" },
+    boxArea: { top: "49%", left: "0%", width: "26%", height: "34%" },
     category: "power",
   },
   "osl-website": {
     name: "OSL Website",
-    description: "Links to the Open-Source Leg website.",
-    position: { top: "71%", left: "75%" },
-    boxArea: { top: "61%", left: "68%", width: "13.5%", height: "18.5%" },
+    description: "Links to the Open Source Leg website.",
+    position: { top: "65%", left: "71%" },
+    boxArea: { top: "55%", left: "63.5%", width: "14%", height: "18.5%" },
     category: "power",
   },
   "cm5-connector": {
@@ -133,9 +133,24 @@ const backComponents: Record<string, ComponentEntry> = {
     boxArea: { top: "20%", left: "31%", width: "11%", height: "12%" },
     category: "communication",
   },
+  "can1-module": {
+    name: "CAN-1",
+    description: (
+      <>
+        <p>CAN1 interface for communication over the Controller Area Network bus.</p>
+        <PinoutPreview
+          src={`${ASSET_BASE}/CAN0_pinout.png`}
+          alt="CAN1 pinout"
+        />
+      </>
+    ),
+    position: { top: "38%", left: "32.5%" },
+    boxArea: { top: "33%", left: "26.5%", width: "11%", height: "12%" },
+    category: "communication",
+  },
   "power-input": {
-    name: "15-42V Input",
-    description: "XT30 connector for 15-42V input power from battery.",
+    name: "15-53V Input",
+    description: "XT30 connector for 15-53V input power from battery.",
     position: { top: "34%", left: "91%" },
     boxArea: { top: "18%", left: "73%", width: "26%", height: "31%" },
     category: "psu",
@@ -223,8 +238,8 @@ const backComponents: Record<string, ComponentEntry> = {
   "imu": {
     name: "IMU",
     description: "Inertial Measurement Unit for motion and orientation sensing.",
-    position: { top: "59.5%", left: "59%" },
-    boxArea: { top: "53%", left: "54.5%", width: "8%", height: "12%" },
+    position: { top: "40%", left: "55%" },
+    boxArea: { top: "34%", left: "50%", width: "8%", height: "12%" },
     category: "components",
   },
   "usb-c": {

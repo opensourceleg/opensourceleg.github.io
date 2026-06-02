@@ -6,7 +6,10 @@ import InteractivePcb from "@/components/interface-board/InteractivePcb";
 import InterfaceBoardFeatures from "@/components/interface-board/interface-board-features";
 import { ArrowUpRight, Wind, Shield, Cable } from "lucide-react";
 
-const datasheetHref = "/downloads/RPi CM5 Interface DataSheet.pdf";
+const purchaseHref = "https://available-inventions.umich.edu/product/osl-electronics--interface-pcb-for-rpi-cm-5";
+const stepHref = "/electronics/interface-board/RPi_CM_interface_board.step";
+const datasheetHref = "/electronics/interface-board/RPi CM5 Interface DataSheet (1.1.0).pdf";
+const datasheetHrefV100 = "/downloads/RPi CM5 Interface DataSheet.pdf";
 
 export default function InterfaceBoardContent() {
   return (
@@ -18,19 +21,35 @@ export default function InterfaceBoardContent() {
               Interface board <span className="font-medium italic">overview</span>
             </h2>
             <p className="text-gray-600 text-sm sm:text-base">
-              The Interface Board is a carrier board for the Raspberry Pi Compute Module 5 (RPi CM5) that provides
-              power input, safety, and standardized connectors so the CM5 can be integrated into robotics systems
-              quickly and consistently. It consolidates common I/O (GPIO, I2C, SPI, UART, CAN, and fan control), exposes
-              reliable power paths, and adds board-level features that simplify bring-up and maintenance. The board is
-              built and tested by researchers at the University of Michigan Neurobionics Lab for use across the
-              Open-Source Leg stack.
+              The Interface Board is an add-on module for the Raspberry Pi Compute Module 5 (RPi CM5) that is designed
+              to provide plug and play functionality for sensors and actuators across a wide variety of robotics
+              applications. It is built and tested by researchers at the University of Michigan Neurobionics Lab.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col gap-3 w-full max-w-sm">
+            <Button
+              href={purchaseHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[var(--light-green)] text-black border border-black hover:bg-[var(--light-blue)] hover:text-black"
+            >
+              Purchase at UM
+              <ArrowUpRight className="w-4 h-4 ml-2" />
+            </Button>
+            <Button
+              href={stepHref}
+              download="RPi_CM_interface_board.step"
+              variant="outline"
+              className="text-black border-black hover:bg-[var(--light-green)] hover:text-black"
+            >
+              Download STEP file
+              <ArrowUpRight className="w-4 h-4 ml-2" />
+            </Button>
             <Button
               href={datasheetHref}
-              download="RPi CM5 Interface DataSheet.pdf"
-              className="bg-[var(--light-green)] text-black border border-black hover:bg-[var(--light-blue)] hover:text-black"
+              download="RPi CM5 Interface DataSheet (1.1.0).pdf"
+              variant="outline"
+              className="text-black border-black hover:bg-[var(--light-green)] hover:text-black"
             >
               Download datasheet
               <ArrowUpRight className="w-4 h-4 ml-2" />
@@ -61,7 +80,7 @@ export default function InterfaceBoardContent() {
                 Click the board to explore connectors, features, and pinout callouts.
               </p>
             </div>
-            <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">v1.0.0</span>
+            <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">v1.1.0</span>
           </div>
           <InteractivePcb />
         </section>
@@ -102,8 +121,8 @@ export default function InterfaceBoardContent() {
                       <tr className="border-t border-black/10">
                         <td className="px-3 py-2 font-semibold">J1</td>
                         <td className="px-3 py-2">XT30</td>
-                        <td className="px-3 py-2">15 - 42</td>
-                        <td className="px-3 py-2">30.2</td>
+                        <td className="px-3 py-2">15 - 53</td>
+                        <td className="px-3 py-2">26.67</td>
                       </tr>
                       <tr className="border-t border-black/10">
                         <td className="px-3 py-2 font-semibold">J2*</td>
@@ -202,8 +221,8 @@ export default function InterfaceBoardContent() {
                       </td>
                     </tr>
                     <tr className="border-t border-black/10">
-                      <td className="px-3 py-2 font-semibold">CAN-1</td>
-                      <td className="px-3 py-2">CAN-0 (on SPI-0, CS0)</td>
+                      <td className="px-3 py-2 font-semibold">CAN-0,1</td>
+                      <td className="px-3 py-2">CAN-0, CAN-1 (on SPI-0, CS0)</td>
                       <td className="px-3 py-2">Molex PicoClasp, 3-Pin</td>
                       <td className="px-3 py-2">
                         <Link
@@ -213,6 +232,21 @@ export default function InterfaceBoardContent() {
                           className="underline text-[var(--light-blue)] hover:text-[var(--light-green)]"
                         >
                           5013300300
+                        </Link>
+                      </td>
+                    </tr>
+                    <tr className="border-t border-black/10">
+                      <td className="px-3 py-2 font-semibold">J4</td>
+                      <td className="px-3 py-2">For connecting external switch to RPi safe shutdown button</td>
+                      <td className="px-3 py-2">Molex PicoClasp, 2-Pin</td>
+                      <td className="px-3 py-2">
+                        <Link
+                          href="https://www.digikey.com/en/products/detail/molex/501331-0207/1531507"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline text-[var(--light-blue)] hover:text-[var(--light-green)]"
+                        >
+                          501331-0207
                         </Link>
                       </td>
                     </tr>
@@ -241,18 +275,14 @@ export default function InterfaceBoardContent() {
                 </table>
               </div>
               <p className="text-sm text-gray-700">
-                Note: Pins can be remapped using RPi Device Tree Overlays in{" "}
-                <code className="px-2 py-1 rounded text-xs font-mono text-gray-900 bg-white border border-black/10">/boot/firmware/config.txt</code>. For more
-                details, refer to this{" "}
-                <Link
+                Note: Pins can be remapped using RPi Device Tree Overlays in <code className="px-2 py-1 rounded text-xs font-mono text-gray-900 bg-white border border-black/10">/boot/firmware/config.txt</code>. For more details, refer to this <Link
                   href="https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline text-[var(--light-blue)] hover:text-[var(--light-green)]"
                 >
                   link
-                </Link>
-                .
+                </Link>.
               </p>
             </div>
           </details>
@@ -368,18 +398,7 @@ export default function InterfaceBoardContent() {
                     make sure to check the Are you using the Neurobionics Interface Board checkbox.
                   </p>
                 </div>
-                <div className="bg-white border border-black rounded-2xl p-5 space-y-3 shadow-xl lg:col-span-2 w-full">
-                  <p className="text-sm uppercase tracking-wide text-[var(--light-blue)] font-semibold">Step 6</p>
-                  <div className="space-y-2 text-sm text-gray-600">
-                    <p>
-                      Check to make sure your user account has sudo access and access to the required sensor groups
-                      (spi, i2c, gpio). If not, add the following groups:
-                    </p>
-                    <code className="block w-fit px-2 py-1 rounded text-xs font-mono text-gray-900 bg-gray-100 border border-black/10">
-                      sudo usermod -aG &lt;GROUP&gt; &lt;USERNAME&gt;
-                    </code>
-                  </div>
-                </div>
+
               </div>
             </div>
           </details>
@@ -498,22 +517,34 @@ export default function InterfaceBoardContent() {
                 <tbody>
                   <tr className="border-t border-black/10">
                     <td className="px-3 py-2 font-semibold">v1.1.0</td>
-                    <td className="px-3 py-2">December 2025</td>
+                    <td className="px-3 py-2">May 2026</td>
                     <td className="px-3 py-2">
                       <div className="space-y-1">
-                        <p className="font-semibold">New Features</p>
+                        <p className="font-semibold">New Features:</p>
                         <ul className="list-disc ml-4">
-                          <li>Added CAN bus support</li>
+                          <li>Added 2nd CAN bus</li>
                           <li>RGB LED now enabled</li>
                           <li>RTC pulled up to remain on when Pi is powered off</li>
+                          <li>ESD protection diodes on all USB-C data and power lines</li>
+                          <li>TVS diode for surge current protection on XT30 input</li>
                         </ul>
-                        <p className="font-semibold mt-2">Changes</p>
+                        <p className="font-semibold mt-2">Changes:</p>
                         <ul className="list-disc ml-4">
                           <li>Modified I2C port configuration</li>
+                          <li>Modified IMU location on board</li>
                         </ul>
                       </div>
                     </td>
-                    <td className="px-3 py-2 text-gray-500">Coming Soon</td>
+                    <td className="px-3 py-2">
+                      <Button
+                        href="/electronics/interface-board/RPi CM5 Interface DataSheet (1.1.0).pdf"
+                        download="RPi CM5 Interface DataSheet (1.1.0).pdf"
+                        className="bg-[var(--light-green)] text-black border border-black hover:bg-[var(--light-blue)] hover:text-black"
+                      >
+                        Download datasheet
+                        <ArrowUpRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </td>
                   </tr>
                   <tr className="border-t border-black/10">
                     <td className="px-3 py-2 font-semibold">v1.0.0</td>
@@ -540,7 +571,7 @@ export default function InterfaceBoardContent() {
                     </td>
                     <td className="px-3 py-2">
                       <Button
-                        href={datasheetHref}
+                        href={datasheetHrefV100}
                         download="RPi CM5 Interface DataSheet.pdf"
                         className="bg-[var(--light-green)] text-black border border-black hover:bg-[var(--light-blue)] hover:text-black"
                       >
