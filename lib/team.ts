@@ -10,7 +10,7 @@ export const team = [
 	{
 		name: "Senthur Ayyappan",
 		role: "Project Lead & Maintainer",
-		title: "Research Engineer",
+		title: "PhD Candidate",
 		imageUrl: "/people/senthur.webp",
 		profileUrl: "https://www.linkedin.com/in/imsenthur/",
 		affliation: "U-M Robotics",
@@ -20,7 +20,7 @@ export const team = [
 		role: "Clinical Lead",
 		title: "",
 		imageUrl: "/people/Itzel.jpeg",
-		profileUrl: "",
+		profileUrl: "https://www.linkedin.com/in/itzelfer/",
 		affliation: "U-M Robotics",
 	},
 	{
@@ -29,6 +29,14 @@ export const team = [
 		title: "",
 		imageUrl: "/people/kiara.webp",
 		profileUrl: "https://www.linkedin.com/in/k1aara/",
+		affliation: "U-M Robotics",
+	},
+	{
+		name: "Elissa Cimino",
+		role: "Co-Project Maintainer",
+		title: "PhD Candidate",
+		imageUrl: "/people/elissa.webp",
+		profileUrl: "https://www.linkedin.com/in/elissacimino/",
 		affliation: "U-M Robotics",
 	},
 	{
@@ -118,14 +126,6 @@ export const team = [
 		imageUrl: "/people/jace.webp",
 		profileUrl: "",
 		affliation: "U-M Robotics",
-	},
-	{
-		name: "Elissa Cimino",
-		role: "Research Intern",
-		title: "Undergraduate Student",
-		imageUrl: "/people/elissa.webp",
-		profileUrl: "",
-		affliation: "Univ. of Miami BME",
 	},
 	{
 		name: "Yuanshao Yang",

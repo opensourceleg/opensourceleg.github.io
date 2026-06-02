@@ -20,7 +20,7 @@ export default function Electronics() {
           icon: <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5" />
         }}
         middleButton={{
-          href: "https://available-inventions.umich.edu/product/osl-electronics",
+          href: "https://available-inventions.umich.edu/products/moss/neurobionicslabelectronics?utm_medium=web&utm_source=Neurobionicslabsite&utm_campaign=Neurobionics%20Portfolio%20Lab%20Site",
           text: "Purchase at UM",
           icon: <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />,
           target: "_blank"
