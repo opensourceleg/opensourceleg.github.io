@@ -21,9 +21,11 @@ export default function InterfaceBoardContent() {
               Interface board <span className="font-medium italic">overview</span>
             </h2>
             <p className="text-gray-600 text-sm sm:text-base">
-              The Interface Board is an add-on module for the Raspberry Pi Compute Module 5 (RPi CM5) that is designed
-              to provide plug and play functionality for sensors and actuators across a wide variety of robotics
-              applications. It is built and tested by researchers at the University of Michigan Neurobionics Lab.
+              The Interface Board is a carrier board for the Raspberry Pi Compute Module 5 (RPi CM5) that provides power
+              input, safety, and standardized connectors so the CM5 can be integrated into robotics systems quickly and
+              consistently. It consolidates common I/O (GPIO, I2C, SPI, UART, CAN, and fan control), exposes reliable
+              power paths, and adds board-level features that simplify bring-up and maintenance. The board is built and
+              tested by researchers at the University of Michigan Neurobionics Lab for use across the Open-Source Leg stack.
             </p>
           </div>
           <div className="flex flex-col gap-3 w-full max-w-sm">
